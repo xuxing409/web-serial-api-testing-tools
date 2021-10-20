@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>串口测试</title>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+    .header {
+      background-color: rgb( 0, 153, 102);
+      width: 100%;
+      height: 50px;
+    }
+    .main {
+      display: flex;
+    }
+    .title {
+      margin: 0px auto;
+      margin-left: 50px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      font-size: 24px;
+    }
+    .tools {
+      margin: 20px;
+    }
+    .setting {
+      width: 350px;
+      height: 350px;
+      border: 1px solid #ddd;
+      margin-top: 20px;
+    }
+    .controller {
+      width: 350px;
+      height: 150px;
+      border: 1px solid #ddd;
+      margin-top: 20px;
+    }
+    .serial-set-top,.serial-con-top {
+      width: 100%;
+      height: 50px;
+      border-bottom: 1px solid #ddd;
+      background-color: #f5f5f5;
+      display: flex;
+      align-items: center;
+    }
+    .serial-title {
+      width: 70px;
+      margin-left: 20px;
+      color: #333;
+    }
+    .row {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+    }
+    .label {
+      margin-left: 20px;
+      width: 70px;
+    }
+    .btn{
+      display: inline-block;
+      padding: 6px 12px;
+      margin-bottom: 0;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.42857143;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      background-image: none;
+      border: 1px solid transparent;
+      border-radius: 4px;
+    }
+    .serial-btn {
+      margin-left: 20px;
+      height: 30px;
+
+      color: #fff;
+      background-color: #5bc0de;
+      border-color: #46b8da;
+    }
+    .select {
+      width: 30%;
+    }
+
+    .message {
+      margin-top: 40px;
+    }
+    .message-btm {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    #receiverText {
+      padding-top: 5px;
+      padding-left: 5px;
+    }
+    .disabled {
+      background-color: rgb(149, 214, 234);
+    }
+  </style>
+</head>
+<body>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <div class="header">
+    <div class="title"> 
+      串口调试助手
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="tools">
+      <!-- 设置 -->
+      <div class="setting">
+        <div class="serial-set-top">
+          <div class="serial-title">
+            串口配置
+          </div>
+        </div>
+  
+        <div class="serial-set-main">
+          <div class="row">
+            <div class="label">串口号:</div>
+            <input type="text" id="serial-number">
+            <button class="btn serial-btn" id="select-serial">选择串口</button>
+          </div>
+  
+          <div class="row">
+            <div class="label">波特率:</div>
+            <select class="select" id="baudrate">
+              <option value ="1200">1200</option>
+              <option value ="2400">2400</option>
+              <option value="4800">4800</option>
+              <option value="9600" selected>9600</option>
+              <option value="115200">115200</option>
+            </select>
+          </div>
+  
+          <div class="row">
+            <div class="label">校验位:</div>
+            <select class="select" id="parity">
+              <option value ="none">none</option>
+              <option value ="odd">odd</option>
+              <option value="even">even</option>
+            </select class="select">
+          </div>
+  
+          <div class="row">
+            <div class="label">数据位:</div>
+            <select class="select" id="dataBits">
+              <option value ="8">8</option>
+              <option value ="7">7</option>
+              <option value="6">6</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+  
+          <div class="row">
+            <div class="label">停止位:</div>
+            <select class="select"  id="stopBits">
+              <option value ="1">1</option>
+              <option value ="2">2</option>
+            </select>
+          </div>
+  
+          <div class="row">
+            <button class="btn serial-btn" id="open">打开</button>
+            <button class="btn serial-btn" id="close">关闭</button>
+          </div>
+  
+        </div>
+  
+      </div>
+      <!-- 控制 -->
+      <div class="controller">
+        <div class="serial-con-top">
+          <div class="serial-title">
+            控制
+          </div>
+        </div>
+  
+        <div class="row">
+          <button class="btn serial-btn" id="clearReceiver">清空接收区</button>
+        </div>
+      </div>
+  
+    </div>
+  
+    <div class="message">
+      <div>
+        <textarea rows="30" cols="80" id="message">欢迎使用网页版串口助手。</textarea>
+      </div>
+      <div class="message-btm">
+        <textarea rows="2" cols="80" id="send-text"></textarea>
+        <button class="btn serial-btn" id="send">发送</button>
+      </div>
+    </div>
+  </div>
+  <script src="./index.js"></script>
+</body>
+</html>
