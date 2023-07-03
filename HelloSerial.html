@@ -31,16 +31,19 @@
       margin: 20px;
     }
     .setting {
-      width: 350px;
-      height: 350px;
+      width: 400px;
       border: 1px solid #ddd;
       margin-top: 20px;
     }
     .controller {
-      width: 350px;
+      width: 400px;
       height: 150px;
       border: 1px solid #ddd;
       margin-top: 20px;
+
+      overflow: hidden;
+     display: flex;
+     flex-direction: column;
     }
     .serial-set-top,.serial-con-top {
       width: 100%;
@@ -50,15 +53,29 @@
       display: flex;
       align-items: center;
     }
+
+    .serial-con-main {
+
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
     .serial-title {
       width: 70px;
       margin-left: 20px;
       color: #333;
     }
+
+    .serial-set-main {
+      padding: 20px;
+    }
     .row {
       display: flex;
       align-items: center;
-      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    .row:last-child {
+      margin-bottom: 0px;
     }
     .label {
       margin-left: 20px;
@@ -144,8 +161,8 @@
               <option value ="1200">1200</option>
               <option value ="2400">2400</option>
               <option value="4800">4800</option>
-              <option value="9600" selected>9600</option>
-              <option value="115200">115200</option>
+              <option value="9600">9600</option>
+              <option value="115200" selected>115200</option>
             </select>
           </div>
   
@@ -192,7 +209,7 @@
           </div>
         </div>
   
-        <div class="row">
+        <div class="serial-con-main">
           <button class="btn serial-btn" id="clearReceiver">清空接收区</button>
         </div>
       </div>
@@ -205,6 +222,9 @@
       </div>
       <div class="message-btm">
         <textarea rows="2" cols="80" id="send-text"></textarea>
+        <check>
+          <option></option>
+        </check>
         <button class="btn serial-btn" id="send">发送</button>
       </div>
     </div>
